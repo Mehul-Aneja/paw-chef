@@ -1,0 +1,7 @@
+Future Work
+- Make individual recipe pages
+- Add unit tests
+- Add option to delete and edit posts
+- Add user profiles, authentication, login
+- Add ability to save recipes, comment on, and like recipes
+- Probably a dozen other things haha
