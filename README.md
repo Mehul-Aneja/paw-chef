@@ -2,6 +2,8 @@
 Where you can find the pawfect recipes for your next cooking adventure!
 
 
+export NODE_OPTIONS=--openssl-legacy-provider
+npm start
 --
 
 
