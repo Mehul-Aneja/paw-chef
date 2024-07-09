@@ -31,9 +31,11 @@ const Dishes = () => {
             {dishes.map((dish, index) => (
                 <DishCard
                     key={index}
+                    id={dish.id}
                     src={dish.image}
                     title={dish.title}
-                    mins={dish.prep_time}/>))}
+                    mins={dish.prep_time}
+                    fetchDishes={fetchDishes}/>))}
 
             <div onClick={handleOpenModal} className="add-dish">
                 <div className="add-dish-icon">
