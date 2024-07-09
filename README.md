@@ -1,5 +1,5 @@
 # paw-chef
-Where you can find the pawfect recipes for your next cooking adventure!
+Where you can find the pawfect dishes for your next cooking adventure!
 
 
 export NODE_OPTIONS=--openssl-legacy-provider
