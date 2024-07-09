@@ -5,3 +5,10 @@ Dark Mode colors -
 #575757
 #717171
 #8b8b8b
+
+
+Lets begin with setting up the backend.
+
+My project directory has a folder called frontend which has all the react stuff and a backend directory which is empty as of now.
+
+I want to start setting up the backend. Give me a brief overall overview of how to set up the back end and then begin with step 1. Take it slow and explain everything, assume I have no idea how Django works and how I use it

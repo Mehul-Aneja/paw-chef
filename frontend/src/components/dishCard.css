@@ -1,0 +1,45 @@
+.dish-card {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    border: 2px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #121212;
+    color: white;
+    transition: 0.3s ease;
+}
+
+.dish-card:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.dish-image {
+    height:80%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.dish-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    text-align: left;
+    color: white;
+    height: 10%;
+}
+
+.dish-time {
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 10%;
+}
+
+.dish-mins {
+    margin-left: 6px;
+    margin-top: 3px;
+}
