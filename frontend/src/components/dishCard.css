@@ -7,11 +7,10 @@
     overflow: hidden;
     background-color: #121212;
     color: white;
-    transition: 0.3s ease;
+    transition: 0.2s ease;
 }
 
 .dish-card:hover {
-    cursor: pointer;
     transform: scale(1.1);
 }
 

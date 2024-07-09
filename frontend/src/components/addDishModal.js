@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './addDishModal.css';
 
-const AddDishModal = ({ show, handleClose }) => {
+const AddDishModal = ({ show, handleClose, fetchDishes }) => {
   const [title, setTitle] = useState('');
   const [image, setImage] = useState(null);
   const [prepTime, setPrepTime] = useState('');
@@ -10,37 +10,47 @@ const AddDishModal = ({ show, handleClose }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (image == null) {
-        setNotification('Please upload an image.');
-        return;
+      setNotification('Please upload an image.');
+      return;
     }
     if (title === '') {
-        setNotification('Please add a title.');
-        return;
+      setNotification('Please add a title.');
+      return;
     }
     if (prepTime === '') {
-        setNotification('Please add a prep time.');
-        return;
+      setNotification('Please add a prep time.');
+      return;
     }
     
     const formData = new FormData();
     formData.append('title', title);
     formData.append('prep_time', prepTime);
     formData.append('image', image);
-    fetch('/dishes/add/', {
-        method: 'POST',
-        body: formData,
+    
+    fetch('http://127.0.0.1:8000/dishes/api/dishes/', {
+      method: 'POST',
+      body: formData,
     })
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
     .then(data => {
-        console.log('Dish added:', data);
+      setNotification('Dish added successfully!');
+      setTimeout(() => {
         setNotification('');
-        setImage(null);
-        setTitle('');
-        setPrepTime('');
-        handleClose();
+      }, 3000);
+      setImage(null);
+      setTitle('');
+      setPrepTime('');
+      fetchDishes();
+      handleClose();
     })
     .catch(error => {
-        console.error('Error adding recipe:', error);
+      console.error('Error adding dish:', error);
+      setNotification('Error adding dish. Please try again.');
     });
   };
 
