@@ -7,7 +7,7 @@ const Team = () => {
     const [team, setTeam] = useState([]);
 
     const fetchTeam = () => {
-        fetch('http://127.0.0.1:8000/team/api/team/')
+        fetch('http://44.211.147.4/team/api/team/')
         .then(response => response.json())
         .then(data => setTeam(data.team))
         .catch(error => console.error('Error fetching team:', error));
