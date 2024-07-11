@@ -1,30 +1,10 @@
-Dark Mode colors - 
-#121212
-#282828
-#3f3f3f
-#575757
-#717171
-#8b8b8b
-
-    
-
-class Team(models.Model):
-    title = models.CharField(max_length=26)
-    image = models.ImageField(upload_to='images/')
-
-    class Meta:
-        ordering = ['title']
-    
-    def __str__(self):
-        return self.title
-
-
-    path('api/team/', views.team, name='team')
-
-
+from django.http import JsonResponse
+from .models import Team
+from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
 
 @csrf_exempt
-def team(request):
+def team(request , team_id=None):
     if request.method == 'GET':
         try:
             team = Team.objects.all()
@@ -44,8 +24,13 @@ def team(request):
         
         team = Team.objects.create(title=title, image=image)
         return JsonResponse( {'id': team.id, 'title': team.title, 'image': str(team.image)} )
+    
+    if request.method == 'DELETE' and team_id is not None:
+        try:
+            team = Team.objects.get(id=team_id)
+            team.delete()
+            return JsonResponse({'message': 'Team deleted successfully'})
+        except Team.DoesNotExist:
+            return JsonResponse({'error': 'Team not found'}, status=400)
 
     return JsonResponse({'error': 'Invalid method'}, status=400)
-
-
-    path("team/", include('dishes.urls')),

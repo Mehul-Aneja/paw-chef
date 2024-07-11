@@ -4,6 +4,7 @@ import Navbar from "./components/navbar";
 import Home from "./pages/home";
 import Dishes from "./pages/dishes";
 import './App.css';
+import Team from "./pages/team";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
           <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/dishes" element={<Dishes />} />
-              <Route path="/dishes/add" element={<Dishes />} />
+              <Route path="/team" element={<Team />} />
           </Routes>
         </div>
       </div>

@@ -1,46 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './dishes.css'
 import DishCard from '../components/dishCard';
 import AddDishModal from '../components/addDishModal';
-import { useNavigate } from 'react-router-dom';
 
-const dishes = [
-    {
-      src: '/BeefNoodles.png',
-      title: 'Beef Noodles',
-      mins: 45,
-    },
-    {
-      src: '/ChickenCurry.jpg', 
-      title: 'Chicken Curry',
-      mins: 30,
-    },
-    {
-        src: '/ChocolateCake.png', 
-        title: 'Chocolate Cake',
-        mins: 60,
-    },
-    {
-        src: '/ChocolateCake.png', 
-        title: 'Peanut Butter Chocolate',
-        mins: 60,
-    },
-  ];
+const Dishes = () => {
 
-const Dish = () => {
-
+    const [dishes, setDishes] = useState([]);
     const [showModal, setShowModal] = useState(false);
-    const navigate = useNavigate();
+
+    const fetchDishes = () => {
+        fetch('http://127.0.0.1:8000/dishes/api/dishes/')
+        .then(response => response.json())
+        .then(data => setDishes(data.dishes))
+        .catch(error => console.error('Error fetching dishes:', error));
+    };
 
     const handleOpenModal = () => {
         setShowModal(true);
-        navigate('/dishes/add');
     };
 
     const handleCloseModal = () => {
         setShowModal(false);
-        navigate('/dishes');
     };
+
+    useEffect(() => { fetchDishes(); }, []);
 
     return (
         <div className="dish-cards-container">
@@ -48,9 +31,11 @@ const Dish = () => {
             {dishes.map((dish, index) => (
                 <DishCard
                     key={index}
-                    src={dish.src}
+                    id={dish.id}
+                    src={dish.image}
                     title={dish.title}
-                    mins={dish.mins}/>))}
+                    mins={dish.prep_time}
+                    fetchDishes={fetchDishes}/>))}
 
             <div onClick={handleOpenModal} className="add-dish">
                 <div className="add-dish-icon">
@@ -69,10 +54,10 @@ const Dish = () => {
                     <span className="add-dish-mins">__ minutes</span>
                 </span>
             </div>
-            <AddDishModal show={showModal} handleClose={handleCloseModal} />
+            <AddDishModal show={showModal} handleClose={handleCloseModal} fetchDishes={fetchDishes} />
 
         </div>
     );
 };
 
-export default Dish;
+export default Dishes;
