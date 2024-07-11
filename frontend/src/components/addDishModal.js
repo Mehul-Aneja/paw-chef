@@ -27,7 +27,7 @@ const AddDishModal = ({ show, handleClose, fetchDishes }) => {
         formData.append('prep_time', prepTime);
         formData.append('image', image);
         
-        fetch('http://127.0.0.1:8000/dishes/api/dishes/', {
+        fetch('http://44.211.147.4/dishes/api/dishes/', {
             method: 'POST',
             body: formData,
         })
