@@ -9,7 +9,7 @@ const Dishes = () => {
     const [showModal, setShowModal] = useState(false);
 
     const fetchDishes = () => {
-        fetch('http://127.0.0.1:8000/dishes/api/dishes/')
+        fetch('http://44.211.147.4/dishes/api/dishes/')
         .then(response => response.json())
         .then(data => setDishes(data.dishes))
         .catch(error => console.error('Error fetching dishes:', error));
