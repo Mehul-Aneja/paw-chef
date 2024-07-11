@@ -4,7 +4,7 @@ import './dishCard.css'
 const DishCard = ( {id, src, title, mins, fetchDishes } ) => {
 
     const handleDelete = () => {
-        fetch(`http://44.211.147.4/dishes/api/dishes/delete/${id}/`, {
+        fetch(`http://44.208.34.121/dishes/api/dishes/delete/${id}/`, {
             method: 'DELETE',
         })
         .then(response => {
