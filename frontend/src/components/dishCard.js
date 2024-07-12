@@ -1,19 +1,16 @@
 import React from "react";
 import './dishCard.css'
+import { deleteDish as deleteDishAPI } from '../api';
 
 const DishCard = ( {id, src, title, mins, fetchDishes } ) => {
 
-    const handleDelete = () => {
-        fetch(`http://pawchef-backend-lb-1434329021.us-east-1.elb.amazonaws.com/dishes/api/dishes/delete/${id}/`, {
-            method: 'DELETE',
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
+    const handleDelete = async () => {
+        try {
+            await deleteDishAPI(id);
             fetchDishes(); 
-        })
-        .catch(error => console.error('Error deleting dish:', error));
+        } catch (error) {
+            console.error('Error deleting dish:', error);
+        }
     };
 
     return (

@@ -2,17 +2,27 @@ import React, { useState, useEffect } from 'react';
 import './dishes.css'
 import DishCard from '../components/dishCard';
 import AddDishModal from '../components/addDishModal';
+import { fetchDishes as fetchDishesAPI } from '../api';
+import SkeletonCard from '../components/skeletonCard';
 
 const Dishes = () => {
 
     const [dishes, setDishes] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    const fetchDishes = () => {
-        fetch('http://pawchef-backend-lb-1434329021.us-east-1.elb.amazonaws.com/dishes/api/dishes/')
-        .then(response => response.json())
-        .then(data => setDishes(data.dishes))
-        .catch(error => console.error('Error fetching dishes:', error));
+    const fetchDishes = async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const data = await fetchDishesAPI();
+            setDishes(data.dishes);
+        } catch (error) {
+            setError('Error fetching dishes');
+        } finally {
+            setLoading(false);
+        }
     };
 
     const handleOpenModal = () => {
@@ -27,15 +37,18 @@ const Dishes = () => {
 
     return (
         <div className="dish-cards-container">
-
-            {dishes.map((dish, index) => (
+            {loading && <SkeletonCard /> }
+            {error && <p>{error}</p>}
+            {!loading && !error && dishes.map((dish, index) => (
                 <DishCard
                     key={index}
                     id={dish.id}
                     src={dish.image}
                     title={dish.title}
                     mins={dish.prep_time}
-                    fetchDishes={fetchDishes}/>))}
+                    fetchDishes={fetchDishes}
+                />
+            ))}
 
             <div onClick={handleOpenModal} className="add-dish">
                 <div className="add-dish-icon">
