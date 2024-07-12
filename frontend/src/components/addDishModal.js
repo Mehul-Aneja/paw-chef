@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './addDishModal.css';
+import { addDish as addDishAPI } from '../api';
 
 const AddDishModal = ({ show, handleClose, fetchDishes }) => {
     const [title, setTitle] = useState('');
@@ -7,7 +8,7 @@ const AddDishModal = ({ show, handleClose, fetchDishes }) => {
     const [prepTime, setPrepTime] = useState('');
     const [notification, setNotification] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (image == null) {
             setNotification('Please upload an image.');
@@ -27,17 +28,8 @@ const AddDishModal = ({ show, handleClose, fetchDishes }) => {
         formData.append('prep_time', prepTime);
         formData.append('image', image);
         
-        fetch('http://pawchef-backend-lb-1434329021.us-east-1.elb.amazonaws.com/dishes/api/dishes/', {
-            method: 'POST',
-            body: formData,
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
+        try {
+            await addDishAPI(formData);
             setNotification('Dish added successfully!');
             setTimeout(() => { setNotification(''); }, 3000);
             setImage(null);
@@ -45,11 +37,10 @@ const AddDishModal = ({ show, handleClose, fetchDishes }) => {
             setPrepTime('');
             fetchDishes();
             handleClose();
-        })
-        .catch(error => {
+        } catch (error) {
             console.error('Error adding dish:', error);
             setNotification('Error adding dish. Please try again.');
-        });
+        }
     };
 
     const handleImageChange = (e) => {
