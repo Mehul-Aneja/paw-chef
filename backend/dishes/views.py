@@ -3,6 +3,10 @@ from .models import Dish
 from django.views.decorators.csrf import csrf_exempt # Add CSRF protection later
 # Add django REST and serializers later
 from django.conf import settings
+from django.http import HttpResponse
+
+def health_check(request):
+    return HttpResponse("OK", status=200)
 
 @csrf_exempt
 def dishes(request):

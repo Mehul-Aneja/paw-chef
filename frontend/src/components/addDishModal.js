@@ -27,7 +27,7 @@ const AddDishModal = ({ show, handleClose, fetchDishes }) => {
         formData.append('prep_time', prepTime);
         formData.append('image', image);
         
-        fetch('http://44.208.34.121/dishes/api/dishes/', {
+        fetch('http://pawchef-backend-lb-1434329021.us-east-1.elb.amazonaws.com/dishes/api/dishes/', {
             method: 'POST',
             body: formData,
         })
