@@ -9,7 +9,7 @@ const Dishes = () => {
     const [showModal, setShowModal] = useState(false);
 
     const fetchDishes = () => {
-        fetch('http://44.208.34.121/dishes/api/dishes/')
+        fetch('http://pawchef-backend-lb-1434329021.us-east-1.elb.amazonaws.com/dishes/api/dishes/')
         .then(response => response.json())
         .then(data => setDishes(data.dishes))
         .catch(error => console.error('Error fetching dishes:', error));
