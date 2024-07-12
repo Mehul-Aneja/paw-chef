@@ -6,9 +6,9 @@ import './skeletonCard.css'
 const SkeletonCard = () => {
     return (
         <SkeletonTheme color="#202020" highlightColor="#444">
-            <section className="skeleton-card">
+            <div className="skeleton-card">
                 <Skeleton height={400} />
-            </section>
+            </div>
         </SkeletonTheme>
     );
 };
