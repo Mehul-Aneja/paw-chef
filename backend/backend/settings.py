@@ -31,7 +31,7 @@ SECRET_KEY = "django-insecure-uo*d@g49i#vkkq*h9t0(z-3v#wlz+m^l4vd^u&mgwv4%2zsj^j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['44.208.34.121', 'localhost', '127.0.0.1', 'pawchef-backend-lb-1434329021.us-east-1.elb.amazonaws.com']
+ALLOWED_HOSTS = ['10.0.138.133', '54.210.250.198', '44.208.34.121', 'localhost', '127.0.0.1', 'pawchef-backend-lb-1434329021.us-east-1.elb.amazonaws.com']
 
 
 # Application definition
