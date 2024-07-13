@@ -1,3 +1,4 @@
+<<<<<<< dev
 # Paw-Chef
 
 Where you can find the pawfect dishes for your next cooking adventure!
