@@ -2,6 +2,7 @@
 # Paw-Chef
 
 Where you can find the pawfect dishes for your next cooking adventure!
+
 Paw-Chef is a cooking platform to share and view dishes.
 
 ## Installation
