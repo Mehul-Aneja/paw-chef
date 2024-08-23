@@ -1,0 +1,10 @@
+{
+  "homepage": "https://mehul-aneja.github.io/paw-chef/",
+  "scripts": {
+    "predeploy": "cd frontend && NODE_OPTIONS=--openssl-legacy-provider npm run build",
+    "deploy": "gh-pages -d frontend/build"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
+  }
+}
